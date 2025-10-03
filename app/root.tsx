@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import Navbar from "src/components/Navbar";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -32,7 +33,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="min-h-screen bg-[url('/bg.png')] bg-cover bg-no-repeat font-poppins">
+        <Navbar />
         {children}
         <ScrollRestoration />
         <Scripts />
