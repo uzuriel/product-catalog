@@ -23,7 +23,7 @@ const ProductCard = ({
           <p className="text-primary-content text-justify line-clamp-2">
             {description}
           </p>
-          <h3 className="font-bold text-primary-content">
+          <h3 className="font-bold text-highlight-gold">
             ₱{price.toLocaleString()}
           </h3>
         </div>

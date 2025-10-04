@@ -33,8 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen bg-[url('/bg.png')] bg-cover bg-no-repeat font-poppins">
-        <Navbar />
+      <body>
         {children}
         <ScrollRestoration />
         <Scripts />

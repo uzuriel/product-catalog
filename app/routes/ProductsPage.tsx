@@ -13,6 +13,10 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+export function HydrateFallback() {
+  return <div>Loading...</div>;
+}
+
 // Page loader: runs server-side
 export async function loader() {
   const products = await fetch("http://localhost:5173/api/products").then(

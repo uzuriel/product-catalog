@@ -8,6 +8,10 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+export function HydrateFallback() {
+  return <div>Loading...</div>;
+}
+
 export default function Home() {
   return (
     <main>
