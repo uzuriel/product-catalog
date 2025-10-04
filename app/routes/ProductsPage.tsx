@@ -43,7 +43,9 @@ export default function ProductsPage() {
 
   return (
     <main>
-      <h1>Every Press, Perfected</h1>
+      <h1>
+        Every Press, <span className="text-highlight-gold">Perfected</span>
+      </h1>
       <h2>Power. Speed. Reliability. All in your hands.</h2>
 
       {/* search bar */}
@@ -57,11 +59,11 @@ export default function ProductsPage() {
         />
       </section>
 
-      {/* products */}
       <section className="grid grid-cols-2 lg:grid-cols-4 justify-center justify-items-center gap-8">
         {currentProducts.map((p) => (
           <ProductCard
             key={p.id}
+            productId={p.id}
             imageUrl={p.imageUrl}
             name={p.name}
             description={p.description}

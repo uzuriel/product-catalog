@@ -5,7 +5,16 @@ export type ProductProps = {
   price: number;
   stock: number;
   imageUrl: string;
+  category: string;
   createdAt: Date;
+};
+
+export type ProductCardProps = {
+  productId: number;
+  imageUrl: string;
+  name: string;
+  description?: string;
+  price: number;
 };
 
 export type SearchbarProps = {

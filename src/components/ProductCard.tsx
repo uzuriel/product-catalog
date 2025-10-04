@@ -1,30 +1,34 @@
-type ProductCardProps = {
-  imageUrl: string;
-  name: string;
-  description?: string;
-  price: number;
-};
+import { NavLink } from "react-router";
+import type { ProductCardProps } from "~/types";
 
 const ProductCard = ({
+  productId,
   imageUrl,
   name,
   description,
   price,
 }: ProductCardProps) => {
   return (
-    <div className="card bg-primary-content w-96 h-full shadow-sm">
-      <figure>
-        <img src={imageUrl} alt={name} />
-      </figure>
-      <div className="card-body">
-        <h3 className="card-title">{name}</h3>
-        <p>{description}</p>
-        <div className="card-actions justify-between">
-          <h3 className="font-bold">₱{price}</h3>
-          <button className="btn btn-primary">Buy Now</button>
+    <NavLink to={`/products/${productId}`} end>
+      <div className="card bg-primary w-96 h-full shadow-sm">
+        <figure className="bg-primary-content w-96 h-64 flex items-center justify-center">
+          <img
+            src={imageUrl}
+            alt={name}
+            className="w-full h-full object-cover"
+          />
+        </figure>
+        <div className="card-body gap-4">
+          <h3 className="card-title text-primary-content">{name}</h3>
+          <p className="text-primary-content text-justify line-clamp-2">
+            {description}
+          </p>
+          <h3 className="font-bold text-primary-content">
+            ₱{price.toLocaleString()}
+          </h3>
         </div>
       </div>
-    </div>
+    </NavLink>
   );
 };
 

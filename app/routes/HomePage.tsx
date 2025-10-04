@@ -13,7 +13,8 @@ export default function Home() {
     <main>
       <section className="flex flex-col justify-center items-center gap-4">
         <h1>
-          Shaping The <span className="text-[#FFB400]">Future of Play</span>
+          Shaping The{" "}
+          <span className="text-highlight-gold">Future of Play</span>
         </h1>
         <h2>
           AULA blends innovation and precision to create gear that empowers
