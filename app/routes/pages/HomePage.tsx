@@ -1,5 +1,13 @@
-import type { Route } from "./+types/HomePage";
 import { NavLink } from "react-router";
+import type { Route } from "./+types/HomePage";
+import { getSession } from "~/session";
+
+export async function loader({ request }: Route.LoaderArgs) {
+  const session = await getSession(request);
+  const user = session.get("user");
+  console.log("Logged in user:", user); // 🧠 This runs on the server
+  return { user };
+}
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -12,7 +20,9 @@ export function HydrateFallback() {
   return <div>Loading...</div>;
 }
 
-export default function Home() {
+export default function Home({ loaderData }: Route.ComponentProps) {
+  const { user } = loaderData;
+  console.log("Client-side user:", user); // 🧠 This runs in browser
   return (
     <main>
       <section className="flex flex-col justify-center items-center gap-4">

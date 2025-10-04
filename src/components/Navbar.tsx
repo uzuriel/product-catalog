@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink, Form } from "react-router";
 
 const Navbar = () => {
   return (
@@ -7,7 +7,7 @@ const Navbar = () => {
         <img src="/logo.svg" alt="Logo" className="h-16 w-24" />
       </NavLink>
 
-      <nav className="hidden *:text-white *:font-poppins lg:flex flex-row gap-8">
+      <nav className="hidden *:text-white *:font-poppins lg:flex flex-row gap-8 items-center">
         <NavLink to="/" end>
           Home
         </NavLink>
@@ -18,6 +18,15 @@ const Navbar = () => {
           About AULA
         </NavLink>
       </nav>
+      <Form method="post" action="/logout" reloadDocument>
+        <button
+          type="submit"
+          title="Logout"
+          className="p-2 rounded-full transition cursor-pointer text-primary-content"
+        >
+          Logout
+        </button>
+      </Form>
     </header>
   );
 };

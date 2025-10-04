@@ -3,5 +3,9 @@ import { products } from "../../../src/db/schema";
 import { eq } from "drizzle-orm";
 
 export async function getOneProductFromDb(id: number) {
-  return await db.select().from(products).where(eq(products.id, id).getSQL());
+  const product = await db.query.products.findFirst({
+    where: eq(products.id, id),
+  });
+
+  return product; // ✅ returns a single object or null
 }
