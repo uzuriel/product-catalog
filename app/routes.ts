@@ -15,9 +15,11 @@ export default [
   ]),
 
   // auth
-  route("login", "routes/auth/LoginPage.tsx"),
-  route("signup", "routes/auth/SignupPage.tsx"),
-  route("logout", "routes/auth/logout.ts"),
+  layout("layout/authLayout.tsx", [
+    route("login", "routes/auth/LoginPage.tsx"),
+    route("signup", "routes/auth/SignupPage.tsx"),
+    route("logout", "routes/auth/logout.ts"),
+  ]),
 
   // api
   route("api/hello", "routes/api/hello.ts"),

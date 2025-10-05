@@ -30,7 +30,7 @@ export default function ProductsPage() {
 
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; // how many products per page
+  const itemsPerPage = 12; // how many products per page
 
   // Filter products by name
   const filteredProducts = products.filter((p) =>
@@ -53,7 +53,7 @@ export default function ProductsPage() {
       <h2>Power. Speed. Reliability. All in your hands.</h2>
 
       {/* search bar */}
-      <section className="flex justify-start px-8">
+      <section className="flex justify-center mt-4 mb-10">
         <Searchbar
           value={search}
           onChange={(v) => {
@@ -63,7 +63,7 @@ export default function ProductsPage() {
         />
       </section>
 
-      <section className="grid grid-cols-2 lg:grid-cols-4 justify-center justify-items-center gap-8">
+      <section className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 justify-items-center">
         {currentProducts.map((p) => (
           <ProductCard
             key={p.id}

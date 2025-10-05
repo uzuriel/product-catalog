@@ -9,6 +9,8 @@
   --font-poppins: "Poppins", sans-serif;
 
   --color-highlight-gold: #ffb400;
+
+  --breakpoint-3xl: 110rem;
 }
 
 main {

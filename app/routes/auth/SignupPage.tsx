@@ -1,10 +1,17 @@
-import { Form, redirect } from "react-router";
+import { Form, NavLink, redirect } from "react-router";
 import bcrypt from "bcryptjs";
 import { db } from "../../../src/index";
 import { users } from "../../../src/db/schema";
 import { eq } from "drizzle-orm";
 import { getSession, sessionStorage } from "../../session";
+import type { Route } from "./+types/SignupPage";
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "Signup" },
+    { name: "description", content: "Product Catalog" },
+  ];
+}
 export async function loader({ request }: { request: Request }) {
   // 🧠 Prevent logged-in users from accessing signup page
   const session = await getSession(request);
@@ -55,26 +62,39 @@ export async function action({ request }: { request: Request }) {
 
 export default function SignupPage() {
   return (
-    <div className="max-w-md mx-auto p-6">
+    <section className="min-h-screen max-w-xl mx-auto p-12 lg:p-8 flex flex-col justify-center gap-4">
+      <figure className="flex justify-center">
+        <img src="/logo.svg" alt="Logo" className="h-16 w-24" />
+      </figure>
       <h1 className="text-2xl font-bold mb-4">Sign Up</h1>
       <Form method="post" className="flex flex-col gap-3">
-        <input name="username" placeholder="Username" className="input" />
+        <input
+          name="username"
+          placeholder="Username"
+          className="input w-full"
+        />
         <input
           name="email"
           type="email"
           placeholder="Email"
-          className="input"
+          className="input w-full"
         />
         <input
           name="password"
           type="password"
           placeholder="Password"
-          className="input"
+          className="input w-full"
         />
         <button type="submit" className="btn btn-primary">
           Create Account
         </button>
       </Form>
-    </div>
+      <p className="flex flex-row justify-center text-primary-content">
+        Already have an account?
+        <NavLink to="/login" end className="text-highlight-gold ml-1">
+          Login
+        </NavLink>
+      </p>
+    </section>
   );
 }
