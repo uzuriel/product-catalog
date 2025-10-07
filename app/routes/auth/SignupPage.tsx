@@ -32,6 +32,7 @@ export async function action({ request }: { request: Request }) {
     return Response.json({ error: "All fields required" }, { status: 400 });
   }
 
+  // Check for existing email
   const existing = await db.query.users.findFirst({
     where: eq(users.email, email),
   });
@@ -42,6 +43,7 @@ export async function action({ request }: { request: Request }) {
 
   const passwordHash = await bcrypt.hash(password, 10);
 
+  // 1️⃣ Insert the new user
   await db.insert(users).values({
     username,
     email,
@@ -49,9 +51,23 @@ export async function action({ request }: { request: Request }) {
     createdAt: new Date(),
   });
 
-  // Auto-login after signup
+  // 2️⃣ Fetch the inserted user manually
+  const newUser = await db.query.users.findFirst({
+    where: eq(users.email, email),
+    columns: {
+      id: true,
+      username: true,
+      email: true,
+    },
+  });
+
+  if (!newUser) {
+    return Response.json({ error: "Failed to create user" }, { status: 500 });
+  }
+
+  // 3️⃣ Store the full user object in session
   const session = await sessionStorage.getSession();
-  session.set("user", email);
+  session.set("user", newUser);
 
   return redirect("/", {
     headers: {

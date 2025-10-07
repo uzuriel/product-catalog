@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { Form, useLoaderData } from "react-router";
 import type { Route } from "./+types/ProductDetailPage";
 
 export function meta({}: Route.MetaArgs) {
@@ -31,6 +31,7 @@ export default function ProductDetailPage() {
     imageUrl,
     category,
   });
+
   return (
     <main>
       <section className="flex flex-row gap-16 justify-center">
@@ -49,6 +50,12 @@ export default function ProductDetailPage() {
           </h3>
           <h4 className="text-primary-content">Stocks: {stock}</h4>
         </section>
+        <Form method="post" action="/api/cart">
+          <input type="hidden" name="productId" value={id} />
+          <button type="submit" className="btn btn-primary mt-2 w-full">
+            Add to Cart
+          </button>
+        </Form>
       </section>
     </main>
   );

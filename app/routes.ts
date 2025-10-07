@@ -11,7 +11,6 @@ export default [
     route("", "routes/pages/HomePage.tsx"),
     route("products", "routes/pages/ProductsPage.tsx"),
     route("products/:productId", "routes/pages/ProductDetailPage.tsx"),
-    route("about-us", "routes/pages/AboutPage.tsx"),
   ]),
 
   // auth
@@ -25,4 +24,6 @@ export default [
   route("api/hello", "routes/api/hello.ts"),
   route("api/products", "routes/api/products.ts"),
   route("api/products/:id", "routes/api/products.$id.ts"),
+  route("api/cart", "routes/api/cart.ts"),
+  route("api/cart/:id", "routes/api/cart.$id.ts"),
 ] satisfies RouteConfig;

@@ -6,6 +6,7 @@ import {
   serial,
   primaryKey,
   mysqlTableCreator,
+  boolean,
 } from "drizzle-orm/mysql-core";
 
 const mysqlTable = mysqlTableCreator((name) => name);
@@ -16,6 +17,7 @@ export const users = mysqlTable("users", {
   username: varchar("username", { length: 255 }).notNull().unique(),
   email: varchar("email", { length: 255 }).notNull().unique(),
   passwordHash: varchar("password_hash", { length: 255 }).notNull(),
+  isAdmin: boolean("is_admin").default(false).notNull(),
   createdAt: datetime("created_at").notNull(),
 });
 
