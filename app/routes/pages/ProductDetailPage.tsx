@@ -1,5 +1,6 @@
 import { Form, useLoaderData } from "react-router";
 import type { Route } from "./+types/ProductDetailPage";
+import { ShoppingCart } from "lucide-react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -49,13 +50,34 @@ export default function ProductDetailPage() {
             ₱{price.toLocaleString()}
           </h3>
           <h4 className="text-primary-content">Stocks: {stock}</h4>
+          <Form
+            method="post"
+            action="/api/cart"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const form = e.currentTarget;
+              const formData = new FormData(form);
+
+              await fetch("/api/cart", {
+                method: "POST",
+                body: formData,
+                credentials: "include",
+              });
+
+              // 🧠 Tell Navbar to update
+              window.dispatchEvent(new Event("cart:update"));
+            }}
+          >
+            <input type="hidden" name="productId" value={id} />
+            <button
+              type="submit"
+              className="btn bg-[linear-gradient(270deg,_#5151C0_0%,_#5F5FA2_51%,_#7777EC_86%)] flex flex-row items-center justify-center gap-2 rounded-xl border-0 shadow-sm text-primary-content"
+            >
+              <ShoppingCart />
+              Add to Cart
+            </button>
+          </Form>
         </section>
-        <Form method="post" action="/api/cart">
-          <input type="hidden" name="productId" value={id} />
-          <button type="submit" className="btn btn-primary mt-2 w-full">
-            Add to Cart
-          </button>
-        </Form>
       </section>
     </main>
   );
