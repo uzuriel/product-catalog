@@ -11,6 +11,8 @@
   --color-highlight-gold: #ffb400;
 
   --breakpoint-3xl: 110rem;
+  --breakpoint-4xl: 120rem;
+  --breakpoint-5xl: 130rem;
 }
 
 main {

@@ -63,7 +63,7 @@ export default function ProductsPage() {
         />
       </section>
 
-      <section className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 justify-items-center">
+      <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 5xl:grid-cols-6 gap-8 justify-items-center">
         {currentProducts.map((p) => (
           <ProductCard
             key={p.id}
